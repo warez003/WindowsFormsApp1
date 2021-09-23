@@ -5,30 +5,30 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
-    public partial class Form1 : Form
-    {
-        public Form1()
-        {
-            InitializeComponent();
-            this.Load += Load_Event;
-        }
+	public partial class Form1 : Form
+	{
+		public Form1()
+		{
+			InitializeComponent();
+			this.Load += Load_Event;
+		}
 
-        unsafe private void Load_Event(object sender, EventArgs e)
-        {
-            this.Text = "Test_Editor3000";
-            this.Width = 800; this.Height = 600;
-            this.CenterToScreen();
-            this.StartPosition = FormStartPosition.CenterScreen;
+		unsafe private void Load_Event(object sender, EventArgs e)
+		{
+			this.Text = "Test_Editor3000";
+			this.Width = 800; this.Height = 600;
+			this.CenterToScreen();
+			this.StartPosition = FormStartPosition.CenterScreen;
 
 			Control pn1 = Create_Panel(this, "pn1", new Point(139, 0), new Size(500, 561));
 			int x = Convert.ToInt32(pn1.Location.X); int y = Convert.ToInt32(pn1.Location.Y);
 
-            List<Button> bt = new List<Button>();
+			List<Button> bt = new List<Button>();
 
 			Control c2 = Create_Label(pn1, "lb1", "Создавай тесты просто!", new Point(x - 25, y + pn1.Height / 2 - 39));
 			c2.Font = new Font("Times new roman", 18, FontStyle.Regular);
 			c2.ForeColor = Color.FromArgb(65, 105, 225);
-            x = Convert.ToInt32(c2.Location.X); y = Convert.ToInt32(c2.Location.Y);
+			x = Convert.ToInt32(c2.Location.X); y = Convert.ToInt32(c2.Location.Y);
 
 			Control c3 = Create_Button(pn1, "bt1", "Создать текст", new Point(x + c2.Width / 2, y + c2.Height + 10));
 			c3.Location = new Point(x + c2.Width / 2 - c3.Width / 2, y + c2.Height + 10);
@@ -38,22 +38,22 @@ namespace WindowsFormsApp1
 			Control pn2 = Create_Panel(this, "pn2", pn1.Location, pn1.Size);
 			x = Convert.ToInt32(pn2.Location.X); y = Convert.ToInt32(pn2.Location.Y);
 
-			Control c4 = Create_Label(pn2,"lb2", "Создание теста: название и описание", pn2.Location);
+			Control c4 = Create_Label(pn2, "lb2", "Создание теста: название и описание", pn2.Location);
 			(pn2.Controls["lb2"] as Label).Font = new Font("Times new roman", 20, FontStyle.Regular);
 			(pn2.Controls["lb2"] as Label).ForeColor = Color.FromArgb(65, 105, 225);
 			(pn2.Controls["lb2"] as Label).Dock = DockStyle.Top; (pn2.Controls["lb2"] as Label).Anchor = AnchorStyles.Left | AnchorStyles.Top;
-            x = Convert.ToInt32(c4.Location.X); y = Convert.ToInt32(c4.Location.Y);
+			x = Convert.ToInt32(c4.Location.X); y = Convert.ToInt32(c4.Location.Y);
 
 			Control c5 = Create_Label(pn2, "lb3", "Название теста: ", new Point(x + 10, y + c4.Height + 10));
-            x = Convert.ToInt32(c5.Location.X); y = Convert.ToInt32(c5.Location.Y);
+			x = Convert.ToInt32(c5.Location.X); y = Convert.ToInt32(c5.Location.Y);
 
 			Control tb1 = Create_TextBox(pn2, "tb1", new Point(x + 100, y), new Size(Convert.ToInt32(pn2.Width / 1.4), 25));
 
 			Control lb4 = Create_Label(pn2, "lb4", "Описание теста: ", new Point(x, y + c5.Size.Height + 15));
-            x = Convert.ToInt32(lb4.Location.X); y = Convert.ToInt32(lb4.Location.Y);
+			x = Convert.ToInt32(lb4.Location.X); y = Convert.ToInt32(lb4.Location.Y);
 
 			Control tb2 = Create_TextBox(pn2, "tb2", new Point(x, y + 25), new Size(Convert.ToInt32(pn2.Width / 1.2), pn2.Height / 4));
-            x = Convert.ToInt32(tb2.Location.X); y = Convert.ToInt32(tb2.Location.Y);
+			x = Convert.ToInt32(tb2.Location.X); y = Convert.ToInt32(tb2.Location.Y);
 
 			Control bt2 = Create_Button(pn2, "bt_edit_questions", "Перейти к редактированию вопросов", new Point(x + tb2.Size.Width / 2 - c3.Size.Width / 2 - 65, y + tb2.Size.Height + 10));
 			bt.Add((pn2.Controls["bt_edit_questions"] as Button));
@@ -74,7 +74,7 @@ namespace WindowsFormsApp1
 			Control textBox3 = Create_TextBox(pn3, "tb3", new Point(x + 10, y + lbN.Size.Height + 10), new Size(Convert.ToInt32(pn3.Width / 1.2), pn3.Height / 6));
 			x = Convert.ToInt32(textBox3.Location.X); y = Convert.ToInt32(textBox3.Location.Y);
 
-            // Тут начинается код, который нужно обернуть в цикл и создавать динамически эти элементы (несколько объектов)
+			// Тут начинается код, который нужно обернуть в цикл и создавать динамически эти элементы (несколько объектов)
 
 			Control lbQ = Create_Label(pn3, "lbQ", "Вариант ответа: ", new Point(x, Convert.ToInt32(y + textBox3.Height + 10)));
 			x = Convert.ToInt32(lbQ.Location.X); y = Convert.ToInt32(lbQ.Location.Y);
@@ -88,11 +88,11 @@ namespace WindowsFormsApp1
 			Control tbQQ = Create_TextBox(pn3, "tbQQ", new Point(x + lbQQ.Width, y), new Size(lbQQ.Width, 20));
 			x = Convert.ToInt32(tbQQ.Location.X); y = Convert.ToInt32(tbQQ.Location.Y);
 
-            // Здесь код для обёртки заканчивается
+			// Здесь код для обёртки заканчивается
 
-            x = Convert.ToInt32(tbQ.Location.X); y = Convert.ToInt32(tbQ.Location.Y);
+			x = Convert.ToInt32(tbQ.Location.X); y = Convert.ToInt32(tbQ.Location.Y);
 
-			Control bt3 = Create_Button(pn3, "bt_add_answer", "Добавить вариант ответа", new Point(x + tbQ.Width/2, y + bt2.Size.Height + 10));
+			Control bt3 = Create_Button(pn3, "bt_add_answer", "Добавить вариант ответа", new Point(x + tbQ.Width / 2, y + bt2.Size.Height + 10));
 			bt3.Location = new Point(x + tbQ.Width / 2 - bt3.Width / 2, y + bt2.Size.Height + 10);
 			bt.Add((pn3.Controls["bt_add_answer"] as Button));
 			(pn3.Controls["bt_add_answer"] as Button).BackColor = Color.FromArgb(255, 255, 255);
@@ -105,7 +105,7 @@ namespace WindowsFormsApp1
 			x = Convert.ToInt32(bt4.Location.X); y = Convert.ToInt32(bt4.Location.Y);
 
 			Control bt5 = Create_Button(pn3, "btresults", "Перейти к редактированию результатов", new Point(x - bt4.Width / 2, y + bt4.Size.Height + 10));
-			bt5.Location = new Point(x - bt4.Width + bt5.Width/4 - 10, y + bt4.Size.Height + 10);
+			bt5.Location = new Point(x - bt4.Width + bt5.Width / 4 - 10, y + bt4.Size.Height + 10);
 			bt.Add((pn3.Controls["btresults"] as Button));
 			(pn3.Controls["btresults"] as Button).BackColor = Color.FromArgb(65, 105, 225);
 			x = Convert.ToInt32(bt5.Location.X); y = Convert.ToInt32(bt5.Location.Y);
@@ -119,9 +119,9 @@ namespace WindowsFormsApp1
 			lbl.Visible = false;
 			x = Convert.ToInt32(lbl.Location.X); y = Convert.ToInt32(lbl.Location.Y);
 
-			Control bt6 = Create_Button(pn4, "bt6", "Перейти к редактированию описания", new Point(x + lbl.Width/2 - 25, y + lbl.Size.Height - 5));
+			Control bt6 = Create_Button(pn4, "bt6", "Перейти к редактированию описания", new Point(x + lbl.Width / 2 - 25, y + lbl.Size.Height - 5));
 			bt.Add((pn4.Controls["bt6"] as Button));
-			bt6.Location = new Point(x + lbl.Width / 2 - bt6.Width/2 + 25, y + lbl.Size.Height - 5);
+			bt6.Location = new Point(x + lbl.Width / 2 - bt6.Width / 2 + 25, y + lbl.Size.Height - 5);
 			(pn4.Controls["bt6"] as Button).BackColor = Color.FromArgb(65, 105, 225);
 			x = Convert.ToInt32(bt6.Location.X); y = Convert.ToInt32(bt6.Location.Y);
 
@@ -159,8 +159,8 @@ namespace WindowsFormsApp1
 			Control tb66 = Create_TextBox(pn4, "tb66", new Point(x + 10, y + lb99.Height + 5), new Size(Convert.ToInt32(pn4.Size.Width / 1.2) - 35, pn4.Height / 3));
 			x = Convert.ToInt32(tb66.Location.X); y = Convert.ToInt32(tb66.Location.Y);
 
-			Control bt9 = Create_Button(pn4, "btsave", "Сохранить тест", new Point(x + tb66.Width/2, y + tb66.Size.Height + 10));
-			bt9.Location = new Point(x + tb66.Width / 2 - bt9.Width/2, y + tb66.Size.Height + 10);
+			Control bt9 = Create_Button(pn4, "btsave", "Сохранить тест", new Point(x + tb66.Width / 2, y + tb66.Size.Height + 10));
+			bt9.Location = new Point(x + tb66.Width / 2 - bt9.Width / 2, y + tb66.Size.Height + 10);
 			bt.Add((pn4.Controls["btsave"] as Button));
 			(pn4.Controls["btsave"] as Button).BackColor = Color.FromArgb(65, 105, 225);
 			x = Convert.ToInt32(bt9.Location.X); y = Convert.ToInt32(bt9.Location.Y);
@@ -209,110 +209,131 @@ namespace WindowsFormsApp1
 			(pn5.Controls["btresults"] as Button).BackColor = Color.FromArgb(65, 105, 225);
 			x = Convert.ToInt32(bt11.Location.X); y = Convert.ToInt32(bt11.Location.Y);
 
-            for (int i = 0; i < bt.Count; i++)
-            {
-                bt[i].Click += Button_Click;
-            }
-        }
+			for (int i = 0; i < bt.Count; i++)
+			{
+				bt[i].Click += Button_Click;
+			}
+		}
 
-        private void Button_Click(object sender, EventArgs e)
-        {
-            Button b = (Button)sender;
+		private void Button_Click(object sender, EventArgs e)
+		{
+			Button b = (Button)sender;
 
-            if (b.Name == "bt1")
-            {
-                (this.Controls["pn1"] as Panel).Hide();
-            }
-            if (b.Name == "bt2")
-            {
-                (this.Controls["pn2"] as Panel).Hide();
-            }
-            if (b.Name == "bt_edit_questions")
-            {
-                (this.Controls["pn2"] as Panel).Hide();
-                (this.Controls["pn3"] as Panel).Show();
-            }
-            if (b.Name == "btsave")
-            {
-                (this.Controls["pn4"] as Panel).Hide();
-                (this.Controls["pn5"] as Panel).Show();
-            }
-            if (b.Name == "btresults")
-            {
-                (this.Controls["pn3"] as Panel).Hide();
-                (this.Controls["pn4"] as Panel).Show();
-            }
-            if (b.Name == "bt6")
-            {
-                (this.Controls["pn4"] as Panel).Hide();
-                (this.Controls["pn2"] as Panel).Show();
-            }
-            if (b.Name == "bt7")
-            {
-                (this.Controls["pn4"] as Panel).Hide();
-                (this.Controls["pn3"] as Panel).Show();
-            }
-            if (b.Name == "bt9")
-            {
-                (this.Controls["pn4"] as Panel).Hide();
-            }
-            if (b.Name == "bt_add_question")
-            {
+			if (b.Name == "bt1")
+			{
+				(this.Controls["pn1"] as Panel).Hide();
+			}
+			if (b.Name == "bt2")
+			{
+				(this.Controls["pn2"] as Panel).Hide();
+			}
+			if (b.Name == "bt_edit_questions")
+			{
+				(this.Controls["pn2"] as Panel).Hide();
+				(this.Controls["pn3"] as Panel).Show();
+			}
+			if (b.Name == "btsave")
+			{
+				(this.Controls["pn4"] as Panel).Hide();
+				(this.Controls["pn5"] as Panel).Show();
+			}
+			if (b.Name == "btresults")
+			{
+				(this.Controls["pn3"] as Panel).Hide();
+				(this.Controls["pn4"] as Panel).Show();
+			}
+			if (b.Name == "bt6")
+			{
+				(this.Controls["pn4"] as Panel).Hide();
+				(this.Controls["pn2"] as Panel).Show();
+			}
+			if (b.Name == "bt7")
+			{
+				(this.Controls["pn4"] as Panel).Hide();
+				(this.Controls["pn3"] as Panel).Show();
+			}
+			if (b.Name == "bt9")
+			{
+				(this.Controls["pn4"] as Panel).Hide();
+			}
+			if (b.Name == "bt_add_question")
+			{
 
-            }
-            if (b.Name == "bt_add_answer")
-            {
+			}
+			if (b.Name == "bt_add_answer")
+			{
+				progressBar1.Value++;
+				ans(progressBar1.Value);
+			}
 
-            }
+		}
 
-        }
+		public void ans(int k = 0)
+		{
+			int h1 = k * 40;
+			int h2 = k * 40;
 
+			Control panel = Create_Panel((this.Controls["pn3"] as Panel), "panel" + k, new Point((this.Controls["pn3"] as Panel).Size.Width / 2 - 170, (this.Controls["pn3"] as Panel).Size.Height / 3 + h1), new Size(300, 22));
+			int x = Convert.ToInt32(panel.Location.X); int y = Convert.ToInt32(panel.Location.Y);
 
-        public Control Create_Panel(Control c, string name, Point pos, Size sz)
-        {
-            Panel p = new Panel();
-            p.Name = name;
-            p.Location = pos;
-            p.BorderStyle = BorderStyle.FixedSingle;
-            p.Size = sz;
-            c.Controls.Add(p);
-            return p;
-        }
+			Control l = Create_Label(panel, "l" + k, "Вариант ответа: ", new Point(0, 0));
+			x = Convert.ToInt32(l.Location.X); y = Convert.ToInt32(l.Location.Y);
 
-        public Control Create_Label(Control c, string name, string text, Point pos)
-        {
-            Label lb = new Label();
+			Control t = Create_TextBox(panel, "t" + k, new Point(x + l.Width, y), new Size(l.Width, 20));
+			x = Convert.ToInt32(t.Location.X); y = Convert.ToInt32(t.Location.Y);
+
+			Control l2 = Create_Label(panel, "l2" + k, "Баллы", new Point(x + t.Width, y));
+			x = Convert.ToInt32(l2.Location.X); y = Convert.ToInt32(l2.Location.Y);
+
+			Control t2 = Create_TextBox(panel, "t2" + k, new Point(x + l2.Width, y), new Size(l2.Width, 20));
+
+		}
+
+		public Control Create_Panel(Control c, string name, Point pos, Size sz)
+		{
+			Panel p = new Panel();
+			p.Name = name;
+			p.Location = pos;
+			p.BorderStyle = BorderStyle.None;
+			p.Size = sz;
+			c.Controls.Add(p);
+			return p;
+		}
+
+		public Control Create_Label(Control c, string name, string text, Point pos)
+		{
+			Label lb = new Label();
 			lb.Name = name;
-            lb.Text = text;
-            lb.Location = pos;
-            lb.AutoSize = true;
-            c.Controls.Add(lb);
-            return lb;
-        }
+			lb.Text = text;
+			lb.Location = pos;
+			lb.AutoSize = true;
+			c.Controls.Add(lb);
+			return lb;
+		}
 
-        public Control Create_TextBox(Control c, string name, Point pos, Size sz)
-        {
-            TextBox tb = new TextBox();
+		public Control Create_TextBox(Control c, string name, Point pos, Size sz)
+		{
+			TextBox tb = new TextBox();
 			tb.Name = name;
-            tb.Location = pos;
-            tb.Multiline = true;
-            tb.Size = sz;
-            c.Controls.Add(tb);
-            return tb;
+			tb.Location = pos;
+			tb.Multiline = true;
+			tb.Size = sz;
+			c.Controls.Add(tb);
+			return tb;
 
-        }
+		}
 
-        public Control Create_Button(Control c, string name, string text, Point pos)
-        {
-            Button bt = new Button();
-            bt.Text = text;
-            bt.Name = name;
-            bt.Location = pos;
-            bt.AutoSize = true;
-            c.Controls.Add(bt);
-            return bt;
-        }
+		public Control Create_Button(Control c, string name, string text, Point pos)
+		{
+			Button bt = new Button();
+			bt.Text = text;
+			bt.Name = name;
+			bt.Location = pos;
+			bt.AutoSize = true;
+			c.Controls.Add(bt);
+			return bt;
+		}
 
 
-    }
+	}
 }
