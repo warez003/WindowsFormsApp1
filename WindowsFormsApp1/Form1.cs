@@ -43,6 +43,7 @@ namespace WindowsFormsApp1
             Label lb3 = Create_Label(pn2, "lb3", "Название теста: ", new Point(lb2.Location.X + 10, lb2.Location.Y + lb2.Height + 10));
 
             TextBox tb1 = Create_TextBox(pn2, "tb1", new Point(lb3.Location.X + 100, lb3.Location.Y), new Size(Convert.ToInt32(pn2.Width / 1.4), 20));
+            tb1.LostFocus += Tb1_LostFocus;
 
             Label lb4 = Create_Label(pn2, "lb4", "Описание теста: ", new Point(lb3.Location.X, lb3.Location.Y + lb3.Size.Height + 15));
 
@@ -92,10 +93,12 @@ namespace WindowsFormsApp1
             Label lb33 = Create_Label(pn5, "lb33", "Название теста: ", new Point(lb11.Location.X, Convert.ToInt32(lb11.Location.Y + lb11.Height / 1.5) + 10));
 
             TextBox tbt = Create_TextBox(pn5, "tbb", new Point(lb33.Location.X + lb33.Width + 5, lb33.Location.Y), new Size(Convert.ToInt32(lb11.Size.Width / 1.3), 20));
+            tbt.LostFocus += Tb1_LostFocus;
 
             Label lb13 = Create_Label(pn5, "lb13", "Описание теста: ", new Point(lb33.Location.X, lb33.Location.Y + lb11.Height));
 
             TextBox tb9 = Create_TextBox(pn5, "tb9", new Point(lb13.Location.X + 35, lb13.Location.Y + 20), new Size(Convert.ToInt32(pn5.Width / 1.2), pn5.Height / 4));
+            tb9.LostFocus += Tb1_LostFocus;
 
             Button bt10 = Create_Button(pn5, "bt_edit_questions", "Перейти к редактированию вопросов", new Point(tb9.Location.X + tb9.Width / 2, tb9.Location.Y + tb9.Size.Height + 10));
             bt.Add(bt10);
@@ -106,6 +109,10 @@ namespace WindowsFormsApp1
             bt.Add(bt11);
             bt11.BackColor = Color.FromArgb(65, 105, 225);
 
+            Button _save = Create_Button(pn5, "_save", "Сохранить данные", new Point(bt11.Location.X, bt11.Location.Y + bt11.Height));
+            _save.Location = new Point(bt11.Location.X + _save.Width / 2, bt11.Location.Y + bt11.Height + 10);
+            bt.Add(_save);
+
             for (int i = 0; i < bt.Count; i++)
             {
                 bt[i].Click += Button_Click;
@@ -113,6 +120,16 @@ namespace WindowsFormsApp1
 
             Gen_Panel(1);
             Edit_Results(1);
+        }
+
+        private void Tb1_LostFocus(object sender, EventArgs e)
+        {
+            TextBox t = (TextBox)sender;
+
+            if (t.Name != null)
+            {
+                _data.Text = t.Text;
+            }
         }
 
         private void Button_Click(object sender, EventArgs e)
@@ -151,6 +168,18 @@ namespace WindowsFormsApp1
             {
                 (this.Controls["pn4"] as Panel).Hide();
             }
+            if (b.Name == "_save")
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*"; saveFile.CreatePrompt = true; saveFile.OverwritePrompt = true; saveFile.DefaultExt = ".txt"; saveFile.Title = "Сохранение данных программы"; saveFile.AddExtension = true; saveFile.DefaultExt = ".txt";
+
+                if (saveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+
+                string filename = saveFile.FileName;
+                System.IO.File.WriteAllText(filename, _data.Text);
+                MessageBox.Show("Сохранение произошло успешно!");
+            }
 
 
         }
@@ -164,29 +193,33 @@ namespace WindowsFormsApp1
             Panel clone = Create_Panel(p, "clone", new Point(p.Width / 2 - 250, p.Height / 3 - 525 + h1), new Size(455, 355));
             clone.BorderStyle = BorderStyle.None;
 
-            Label label = Create_Label(clone, "label", "Результат для суммы баллов от", new Point(clone.Width/2 - 220, clone.Height/3));
+            Label label = Create_Label(clone, "label", "Результат для суммы баллов от", new Point(clone.Width / 2 - 220, clone.Height / 3));
 
             TextBox textBox = Create_TextBox(clone, "textBox", new Point(label.Location.X + label.Size.Width, label.Location.Y), new Size(label.Size.Width / 4, 20));
+            textBox.LostFocus += Tb1_LostFocus;
 
             Label label2 = Create_Label(clone, "label2", "до", new Point(textBox.Location.X + textBox.Size.Width, textBox.Location.Y));
 
             TextBox textBox1 = Create_TextBox(clone, "textBox1", new Point(label2.Location.X + label2.Width, label2.Location.Y), new Size(label.Size.Width / 4, 20));
+            textBox1.LostFocus += Tb1_LostFocus;
 
             Label label3 = Create_Label(clone, "label3", "Заголовок:", new Point(label.Location.X, label.Location.Y + label.Size.Height + 10));
 
             TextBox textBox2 = Create_TextBox(clone, "textBox2", new Point(label3.Location.X + label3.Size.Width, label3.Location.Y), new Size(Convert.ToInt32(p.Size.Width / 1.6) - 35, 20));
+            textBox2.LostFocus += Tb1_LostFocus;
 
             Label label4 = Create_Label(clone, "label4", "Описание:", new Point(label3.Location.X, label3.Location.Y + label3.Size.Height + 10));
 
             TextBox textBox3 = Create_TextBox(clone, "textBox3", new Point(label4.Location.X + 10, label4.Location.Y + label4.Height + 5), new Size(Convert.ToInt32(p.Size.Width / 1.2) - 35, p.Height / 6));
+            textBox3.LostFocus += Tb1_LostFocus;
 
             Button button1 = Create_Button(clone, "bt_add_results", "Добавить еще результат", new Point(textBox3.Location.X, textBox3.Location.Y + textBox3.Height + 5));
-            button1.Location = new Point(textBox3.Location.X - button1.Width/2 + textBox3.Width/2, textBox3.Location.Y + textBox3.Height + 5);
+            button1.Location = new Point(textBox3.Location.X - button1.Width / 2 + textBox3.Width / 2, textBox3.Location.Y + textBox3.Height + 5);
             button1.ForeColor = Color.FromArgb(65, 105, 225);
             button1.Click += Button_Clicked;
 
             Button button2 = Create_Button(clone, "btsave", "Сохранить тест", new Point(button1.Location.X, button1.Location.Y + button1.Height + 5));
-            button2.Location = new Point(button1.Location.X + button2.Width - button1.Width/2, button1.Location.Y + button1.Height + 5);
+            button2.Location = new Point(button1.Location.X + button2.Width - button1.Width / 2, button1.Location.Y + button1.Height + 5);
             button2.BackColor = Color.FromArgb(65, 105, 225);
             button2.Click += Button_Clicked;
 
@@ -216,6 +249,7 @@ namespace WindowsFormsApp1
             clone.BorderStyle = BorderStyle.None;
             Label l = Create_Label(clone, "l", "Текст вопроса № " + k, new Point(clone.Width / 2 - 190, clone.Height / 3 - 100));
             TextBox tb = Create_TextBox(clone, "tb", new Point(l.Location.X, l.Location.Y + 20), new Size(375, 80));
+            tb.LostFocus += Tb1_LostFocus;
 
             Button add = Create_Button(clone, "add", "Добавить вариант ответа", new Point(tb.Location.X + tb.Width / 2, tb.Location.Y + tb.Height + 10));
             add.Location = new Point(tb.Location.X + tb.Width / 2 - add.Width / 2, tb.Location.Y + tb.Height + 10);
@@ -227,8 +261,10 @@ namespace WindowsFormsApp1
                 panel.BorderStyle = BorderStyle.None;
                 Label label = Create_Label(panel, "label" + k, "Вариант ответа:", new Point(panel.Width / 2 - 185, panel.Height / 3 - 5));
                 TextBox textBox = Create_TextBox(panel, "textBox" + k, new Point(label.Location.X + label.Width, label.Location.Y), new Size(200, 20));
+                textBox.LostFocus += Tb1_LostFocus;
                 Label label2 = Create_Label(panel, "label2" + k, "Баллы", new Point(textBox.Location.X + textBox.Width, textBox.Location.Y));
                 TextBox textBox2 = Create_TextBox(panel, "textBox2" + k, new Point(label2.Location.X + label2.Width, label2.Location.Y), new Size(label2.Width, 20));
+                textBox2.LostFocus += Tb1_LostFocus;
             }
             add.Location = new Point(add.Location.X, add.Location.Y + 30 * 3);
             Button _add = Create_Button(clone, "_add", "Добавить вопрос", new Point(add.Location.X, add.Location.Y + add.Height));

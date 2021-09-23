@@ -30,6 +30,7 @@ namespace WindowsFormsApp1
         private void InitializeComponent()
         {
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this._data = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // progressBar1
@@ -41,21 +42,33 @@ namespace WindowsFormsApp1
             this.progressBar1.TabIndex = 0;
             this.progressBar1.Visible = false;
             // 
+            // _data
+            // 
+            this._data.Location = new System.Drawing.Point(246, 397);
+            this._data.Multiline = true;
+            this._data.Name = "_data";
+            this._data.Size = new System.Drawing.Size(100, 20);
+            this._data.TabIndex = 1;
+            this._data.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this._data);
             this.Controls.Add(this.progressBar1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.ProgressBar progressBar1;
+        public System.Windows.Forms.TextBox _data;
     }
 }
 
